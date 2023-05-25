@@ -130,7 +130,7 @@
                     <td>한식</td>
                     <td>4900</td>
                     <td><a href=http://naver.me/FX3M7saH>행컵 경북대대현점</a></td>
-                    <td>쪽문 + 기숙사쪽문 + 조은문 + 솔로문</td>
+i                   <td>쪽문 + 기숙사쪽문 + 조은문 + 솔로문</td>
                 </tr>
                 <tr>
                     <th>25</th>
@@ -1529,6 +1529,59 @@
             </table>
         </details>
     </div>
+     <div class="container__random active">
+        <table class="dataframe">
+            <thead>
+                <title>식당 추천 프로그램</title>
+                <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=4qgqe032co"></script>
+                <style>
+                    #map {
+                        width: 500px;
+                        height: 400px;
+                    }
+                </style>
+            </thead>
+            <tbody>
+                <h1>대구대 주변 식당 추천</h1>
+                <div id="map"></div>
+                <button onclick="randomRestaurant()">추천받기</button>
+
+                <script>
+                    var map;
+
+                    function initMap() {
+                        map = new naver.maps.Map('map', {
+                            center: new naver.maps.LatLng(35.902093, 128.849081), // 대구대 좌표
+                            zoom: 15
+                        });
+                    }
+
+                    function randomRestaurant() {
+                        var restaurants = [
+                            { name: "라쿤푸마라탕", lat: 35.896575, lng: 128.851577 },
+                            { name: "청춘상회", lat: 35.896584, lng: 128.850747 },
+                            { name: "청춘라면", lat: 35.896757, lng: 128.850319 },
+                            // 여기에 식당 정보를 추가해주세요.
+                        ];
+
+                        var randomIndex = Math.floor(Math.random() * restaurants.length);
+                        var restaurant = restaurants[randomIndex];
+
+                        var marker = new naver.maps.Marker({
+                            position: new naver.maps.LatLng(restaurant.lat, restaurant.lng),
+                            map: map
+                        });
+
+                        map.setCenter(marker.getPosition());
+
+                        alert("추천된 식당: " + restaurant.name);
+                    }
+
+                    naver.maps.onJSContentLoaded = initMap;
+                </script>
+                <script async defer src="https://maps.googleapis.com/maps/api/js?key=vjFAsmCvzKrOhJv75gmClaS1DKLcyJoIoEULcDmC&callback=initMap"></script>
+            </tbody>
+
 </body>
 
 </html>
